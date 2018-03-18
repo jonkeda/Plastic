@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Application" nillable="true" type="Application" />
+  <xs:complexType name="Application">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Model" type="Model" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Database" type="Database" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Enumeration" type="Enumeration" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserInterface" type="UserInterfaceDefinition" />
+        </xs:sequence>
+        <xs:attribute name="Namespace" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Definition" abstract="true">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Description" type="xs:string" />
+    <xs:attribute name="DisplayName" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfPanelDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfPanelDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfViewDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PanelDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfViewDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Controls" type="ControlDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfViewGroupDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ViewDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfViewGroupDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Groups" type="PanelDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfUserInterfaceDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ViewGroupDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfUserInterfaceDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Views" type="ViewDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UserInterfaceDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ViewGroups" type="ViewGroupDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfEnumerationDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Value">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfEnumerationDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfTableDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfTableDefinition">
+        <xs:attribute name="Key" type="xs:int" />
+        <xs:attribute name="Required" type="xs:boolean" />
+        <xs:attribute name="ColumnName" type="xs:string" />
+        <xs:attribute name="Crud" type="Crud" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Crud">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Create" />
+          <xs:enumeration value="Read" />
+          <xs:enumeration value="Update" />
+          <xs:enumeration value="Delete" />
+          <xs:enumeration value="List" />
+          <xs:enumeration value="All" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="FieldDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberFieldDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfInt32">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:int" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="NumberType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Number" />
+      <xs:enumeration value="Currency" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IntField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberFieldDefinitionOfInt32" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnumField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfInt32">
+        <xs:attribute name="EmptyText" type="xs:string" />
+        <xs:attribute name="EnumerationName" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberFieldDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfDecimal">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DecimalField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberFieldDefinitionOfDecimal" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldDefinitionOfDateTime" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateTimeField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfDateTime">
+        <xs:attribute name="Type" type="DateTimeType" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DateTimeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="Date" />
+      <xs:enumeration value="Time" />
+      <xs:enumeration value="Duration" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FieldDefinitionOfString" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StringField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfString">
+        <xs:attribute name="Length" type="xs:int" />
+        <xs:attribute name="MinimumLength" type="xs:int" />
+        <xs:attribute name="LengthErrorMessage" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParentField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfString">
+        <xs:attribute name="ParentTable" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MultipleField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfString">
+        <xs:attribute name="ParentTable" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ChildField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfString">
+        <xs:attribute name="ChildTable" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CalculatedField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfString" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberFieldDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FieldDefinitionOfBoolean">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BoolField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberFieldDefinitionOfBoolean" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfDatabaseDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Table">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfDatabaseDefinition">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="1" name="Bool" type="BoolField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Calculated" type="CalculatedField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Child" type="ChildField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="DateTimeField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Decimal" type="DecimalField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Enumeration" type="EnumField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Int" type="IntField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Multiple" type="MultipleField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="ParentField" />
+            <xs:element minOccurs="0" maxOccurs="1" name="String" type="StringField" />
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Plural" type="xs:string" />
+        <xs:attribute name="Abstract" type="xs:boolean" />
+        <xs:attribute name="ParentTable" type="xs:string" />
+        <xs:attribute name="Crud" type="Crud" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfEntityDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfEntityDefinition">
+        <xs:attribute name="Key" type="xs:int" />
+        <xs:attribute name="Required" type="xs:boolean" />
+        <xs:attribute name="ColumnName" type="xs:string" />
+        <xs:attribute name="Crud" type="Crud" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberAttributeDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfInt32">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:int" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Int">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberAttributeDefinitionOfInt32" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Enum">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfInt32">
+        <xs:attribute name="EmptyText" type="xs:string" />
+        <xs:attribute name="EnumerationName" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberAttributeDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfDecimal">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Decimal">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberAttributeDefinitionOfDecimal" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinitionOfDateTime" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateTime">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfDateTime">
+        <xs:attribute name="Type" type="DateTimeType" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinitionOfString" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="String">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfString">
+        <xs:attribute name="Length" type="xs:int" />
+        <xs:attribute name="MinimumLength" type="xs:int" />
+        <xs:attribute name="LengthErrorMessage" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Parent">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfString">
+        <xs:attribute name="ParentEntity" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Multiple">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfString">
+        <xs:attribute name="ChildEntity" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Child">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfString">
+        <xs:attribute name="ChildEntity" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Calculated">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfString" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttributeDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberAttributeDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="AttributeDefinitionOfBoolean">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Minimum" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Maximum" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+        <xs:attribute name="Type" type="NumberType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bool">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberAttributeDefinitionOfBoolean" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfModelDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Entity">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfModelDefinition">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="1" name="Bool" type="Bool" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Calculated" type="Calculated" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Child" type="Child" />
+            <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="DateTime" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Decimal" type="Decimal" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Enumeration" type="Enum" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Int" type="Int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Multiple" type="Multiple" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="Parent" />
+            <xs:element minOccurs="0" maxOccurs="1" name="String" type="String" />
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Plural" type="xs:string" />
+        <xs:attribute name="Abstract" type="xs:boolean" />
+        <xs:attribute name="ParentEntity" type="xs:string" />
+        <xs:attribute name="Crud" type="Crud" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfApplicationDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Enumeration">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfApplicationDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="Value" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Database">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfApplicationDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" type="Table" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Model">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfApplicationDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Entity" type="Entity" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Definition" nillable="true" type="Definition" />
+  <xs:element name="ArrayOfUserInterfaceDefinition" nillable="true" type="ArrayOfUserInterfaceDefinition" />
+  <xs:complexType name="ArrayOfUserInterfaceDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserInterfaceDefinition" nillable="true" type="UserInterfaceDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserInterfaceDefinition" nillable="true" type="UserInterfaceDefinition" />
+  <xs:element name="ArrayOfViewGroupDefinition" nillable="true" type="ArrayOfViewGroupDefinition" />
+  <xs:complexType name="ArrayOfViewGroupDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViewGroupDefinition" nillable="true" type="ViewGroupDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViewGroupDefinition" nillable="true" type="ViewGroupDefinition" />
+  <xs:element name="ArrayOfViewDefinition" nillable="true" type="ArrayOfViewDefinition" />
+  <xs:complexType name="ArrayOfViewDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViewDefinition" nillable="true" type="ViewDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViewDefinition" nillable="true" type="ViewDefinition" />
+  <xs:element name="IndexViewDefinition" nillable="true" type="IndexViewDefinition" />
+  <xs:complexType name="IndexViewDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeleteViewDefinition" nillable="true" type="DeleteViewDefinition" />
+  <xs:complexType name="DeleteViewDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EditViewDefinition" nillable="true" type="EditViewDefinition" />
+  <xs:complexType name="EditViewDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateViewDefinition" nillable="true" type="CreateViewDefinition" />
+  <xs:complexType name="CreateViewDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetailViewDefinition" nillable="true" type="DetailViewDefinition" />
+  <xs:complexType name="DetailViewDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ArrayOfPanelDefinition" nillable="true" type="ArrayOfPanelDefinition" />
+  <xs:complexType name="ArrayOfPanelDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PanelDefinition" nillable="true" type="PanelDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PanelDefinition" nillable="true" type="PanelDefinition" />
+  <xs:element name="ArrayOfControlDefinition" nillable="true" type="ArrayOfControlDefinition" />
+  <xs:complexType name="ArrayOfControlDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ControlDefinition" nillable="true" type="ControlDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ControlDefinition" nillable="true" type="ControlDefinition" />
+  <xs:element name="StringControlDefinition" nillable="true" type="StringControlDefinition" />
+  <xs:complexType name="StringControlDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ControlDefinitionOfString" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinitionOfString" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntControlDefinition" nillable="true" type="IntControlDefinition" />
+  <xs:complexType name="IntControlDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ControlDefinitionOfInt32" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DecimalControlDefinition" nillable="true" type="DecimalControlDefinition" />
+  <xs:complexType name="DecimalControlDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ControlDefinitionOfDecimal" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DateTimeControlDefinition" nillable="true" type="DateTimeControlDefinition" />
+  <xs:complexType name="DateTimeControlDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ControlDefinitionOfDateTime" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinitionOfDateTime" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoolControlDefinition" nillable="true" type="BoolControlDefinition" />
+  <xs:complexType name="BoolControlDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ControlDefinitionOfBoolean" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ControlDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Value" nillable="true" type="Value" />
+  <xs:element name="ArrayOfValue" nillable="true" type="ArrayOfValue" />
+  <xs:complexType name="ArrayOfValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" type="Value" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Enumeration" nillable="true" type="Enumeration" />
+  <xs:element name="ArrayOfEnumeration" nillable="true" type="ArrayOfEnumeration" />
+  <xs:complexType name="ArrayOfEnumeration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Enumeration" nillable="true" type="Enumeration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttributeDefinition" nillable="true" type="AttributeDefinition" />
+  <xs:element name="ArrayOfAttributeDefinition" nillable="true" type="ArrayOfAttributeDefinition" />
+  <xs:complexType name="ArrayOfAttributeDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttributeDefinition" nillable="true" type="AttributeDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bool" nillable="true" type="Bool" />
+  <xs:element name="Calculated" nillable="true" type="Calculated" />
+  <xs:element name="Child" nillable="true" type="Child" />
+  <xs:element name="DateTime" nillable="true" type="DateTime" />
+  <xs:element name="Decimal" nillable="true" type="Decimal" />
+  <xs:element name="Entity" nillable="true" type="Entity" />
+  <xs:element name="ArrayOfEntity" nillable="true" type="ArrayOfEntity" />
+  <xs:complexType name="ArrayOfEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Entity" nillable="true" type="Entity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Enum" nillable="true" type="Enum" />
+  <xs:element name="Int" nillable="true" type="Int" />
+  <xs:element name="Model" nillable="true" type="Model" />
+  <xs:element name="ArrayOfModel" nillable="true" type="ArrayOfModel" />
+  <xs:complexType name="ArrayOfModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Model" nillable="true" type="Model" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Multiple" nillable="true" type="Multiple" />
+  <xs:element name="Parent" nillable="true" type="Parent" />
+  <xs:element name="String" nillable="true" type="String" />
+  <xs:element name="BoolField" nillable="true" type="BoolField" />
+  <xs:element name="CalculatedField" nillable="true" type="CalculatedField" />
+  <xs:element name="ChildField" nillable="true" type="ChildField" />
+  <xs:element name="Crud" type="Crud" />
+  <xs:element name="Database" nillable="true" type="Database" />
+  <xs:element name="ArrayOfDatabase" nillable="true" type="ArrayOfDatabase" />
+  <xs:complexType name="ArrayOfDatabase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Database" nillable="true" type="Database" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateTimeField" nillable="true" type="DateTimeField" />
+  <xs:element name="DateTimeType" type="DateTimeType" />
+  <xs:element name="DecimalField" nillable="true" type="DecimalField" />
+  <xs:element name="EnumField" nillable="true" type="EnumField" />
+  <xs:element name="FieldDefinition" nillable="true" type="FieldDefinition" />
+  <xs:element name="ArrayOfFieldDefinition" nillable="true" type="ArrayOfFieldDefinition" />
+  <xs:complexType name="ArrayOfFieldDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FieldDefinition" nillable="true" type="FieldDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IntField" nillable="true" type="IntField" />
+  <xs:element name="MultipleField" nillable="true" type="MultipleField" />
+  <xs:element name="NumberType" type="NumberType" />
+  <xs:element name="ParentField" nillable="true" type="ParentField" />
+  <xs:element name="StringField" nillable="true" type="StringField" />
+  <xs:element name="Table" nillable="true" type="Table" />
+  <xs:element name="ArrayOfTable" nillable="true" type="ArrayOfTable" />
+  <xs:complexType name="ArrayOfTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="Table" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

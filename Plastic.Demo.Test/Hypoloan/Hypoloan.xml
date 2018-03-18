@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+  <Model Name="Models">
+
+    <Entity Name="SsifRequest">
+      <Child Name="attest" ChildEntity="SsifAttest"/>
+      <Child Name="revoke" ChildEntity="SsifRevoke"/>
+      <Child Name="verifyRequest" ChildEntity="SsifVerifyRequest"/>
+    </Entity>
+
+    <Entity Name="SsifCreateRequestAnonymous">
+      <Parent Name="ssifRequest" ParentEntity="SsifRequest"/>
+    </Entity>
+
+    <Entity Name="SsifCreateRequest">
+      <Parent Name="ssifRequest" ParentEntity="SsifRequest"/>
+      <String Name="publicExtendedKey"/>
+    </Entity>
+
+    <Entity Name="SsifAttest">
+      <String Name="iri"/>
+      <String Name="value"/>
+    </Entity>
+
+    <Entity Name="SsifRevoke">
+      <String Name="iri"/>
+    </Entity>
+
+    <Entity Name="SsifVerifyRequest">
+      <String Name="iri"/>
+      <String Name="value"/>
+      <Child Name="trustedAttestor" ChildEntity="SsifTrustedAttestor"/>
+    </Entity>
+
+    <Entity Name="SsifTrustedAttestor">
+      <Enumeration Name="type" EnumerationName="SsifTrustIssuerType"  />
+      <String Name="name"/>
+    </Entity>
+
+    <Entity Name="SsifSessionRequest">
+      <Parent Name="meta" ParentEntity="SsifMeta"/>
+      <Parent Name="template" ParentEntity="SsifSessionRequestTemplate"/>
+    </Entity>
+
+    <Entity Name="SsifMeta">
+      <Parent Name="attestationIssuer" ParentEntity="SsifAttestationIssuerSpo"/>
+    </Entity>
+
+    <Entity Name="SsifSpo">
+      <Child Name="context" ChildEntity="string"/>
+      <String Name="type"/>
+      <Child Name="statements" ChildEntity="IriKeyValuePairs"/>
+      <Parent Name="commitment" ParentEntity="SsifCommitment"/>
+    </Entity>
+
+    <Entity Name="SsifCommitment">
+      <!--<Parent Name="commitment" ParentEntity="SsifCommitment"/>
+      <String Name="type"/>-->
+    </Entity>
+
+    <Entity Name="SsifAttestationIssuerSpo" ParentEntity="SsifSpo">
+
+    </Entity>
+
+    <Entity Name="IriKeyValuePairs">
+      <String Name="iri"/>
+      <String Name="value"/>
+    </Entity>
+
+    <Entity Name="SsifSessionRequestTemplate">
+      <String Name="name"/>
+      <Parent Name="spo" ParentEntity="SsifSpo"/>
+    </Entity>
+
+    <Entity Name="SsifSessionResponse">
+      <String Name="sessionId"/>
+      <Child Name="attestations" ChildEntity="SsifAttestation"/>
+    </Entity>
+
+    <Entity Name="SsifAttestation">
+      <String Name="name"/>
+      <Parent Name="spo" ParentEntity="SsifAttestationSpo"/>
+    </Entity>
+
+    <Entity Name="SsifAttestationSpo" ParentEntity="SsifSpo">
+    <!-- <Child Name="verifiedRequest" ParentEntity="SsifSpo"/>
+      <Child Name="revoked" ParentEntity="SsifSpo"/>
+      <Child Name="attested" ParentEntity="SsifSpo"/>
+      <Parent Name="spo" ParentEntity="SsifMeta"/>-->
+    </Entity>
+
+    <Entity Name="SsifResult">
+      <Child Name="verifiedRequest" ChildEntity="SsifSpo"/>
+      <Child Name="revoked" ChildEntity="SsifSpo"/>
+      <Child Name="attested" ChildEntity="SsifSpo"/>
+      <Parent Name="meta" ParentEntity="SsifMeta"/>
+    </Entity>
+
+    <Entity Name="SsifConfiguration">
+      <String Name="blockchain"/>
+      <String Name="privateKey"/>
+
+      <Child Name="categories" ChildEntity="SsifCategory"/>
+      <Child Name="attestors" ChildEntity="SsifAttestor"/>
+      <Child Name="requestPredicates" ChildEntity="SsifPredicate"/>
+      <Child Name="responsePredicates" ChildEntity="SsifPredicate"/>
+    </Entity>
+
+    <Entity Name="SsifAttestor">
+      <String Name="name"/>
+      <String Name="ethereumAdress"/>
+      <String Name="logo"/>
+      <String Name="infoUrl"/>
+      <String Name="ssifUrl"/>
+      <Child Name="texts" ChildEntity="SsifText"/>
+    </Entity>
+
+    <Entity Name="SsifPredicate">
+      <String Name="iri"/>
+      <String Name="datatype"/>
+      <Child Name="texts" ChildEntity="SsifText"/>
+      <String Name="categoryName"/>
+      <Child Name="attestorNames" ChildEntity="string"/>
+    </Entity>
+
+    <Entity Name="SsifText">
+      <String Name="langcode"/>
+      <String Name="text"/>
+    </Entity>
+
+    <Entity Name="SsifCategory">
+      <String Name="name"/>
+      <Child Name="texts" ChildEntity="SsifText"/>
+    </Entity>
+
+    <Entity Name="SsifAttestorInformation">
+      <String Name="name"/>
+      <String Name="ethereumAdress"/>
+      <String Name="logo"/>
+      <String Name="infoUrl"/>
+      <String Name="ssifUrl"/>
+      <Child Name="texts" ChildEntity="SsifText"/>
+      <Child Name="responsePredicates" ChildEntity="SsifPredicate"/>
+    </Entity>
+
+
+  </Model>
+
+  <Enumeration Name="SsifTrustIssuerType" >
+    <Value Name="EcdsaKoblitzSignature2016"/>
+    <Value Name="SSIFEthereumHash2017"/>
+  </Enumeration>
+</Application>

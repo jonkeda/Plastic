@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE0B7F7C-8F35-450D-B93C-7ED27457F8D6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Plastic.Xsd</RootNamespace>
+    <AssemblyName>Plastic.Xsd</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bases\TypeCollection.cs" />
+    <Compile Include="Bases\TypeDictionary.cs" />
+    <Compile Include="Definitions\ApplicationDefinition.cs" />
+    <Compile Include="Definitions\Data\BoolFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\CalculatedFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\Crud.cs" />
+    <Compile Include="Definitions\Data\CrudExtension.cs" />
+    <Compile Include="Definitions\Data\DatabaseDefinition.cs" />
+    <Compile Include="Definitions\Data\DatabaseDefinitionCollection.cs" />
+    <Compile Include="Definitions\Data\DateTimeFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\DateTimeType.cs" />
+    <Compile Include="Definitions\Data\DecimalFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\EnumerationFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\FieldDefinition.cs" />
+    <Compile Include="Definitions\Data\FieldDefinitionCollection.cs" />
+    <Compile Include="Definitions\Data\IntFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\MultipleFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\NumberFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\NumberType.cs" />
+    <Compile Include="Definitions\Data\ParentFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\StringFieldDefinition.cs" />
+    <Compile Include="Definitions\Data\TableDefinition.cs" />
+    <Compile Include="Definitions\Data\TableDefinitionCollection.cs" />
+    <Compile Include="Definitions\Definition.cs" />
+    <Compile Include="Definitions\DefinitionCollection.cs" />
+    <Compile Include="Definitions\Enumerations\Enumerations.cs" />
+    <Compile Include="Definitions\Views\Views.cs" />
+    <Compile Include="Infos\ApplicationInfo.cs" />
+    <Compile Include="Infos\Data\BoolFieldInfo.cs" />
+    <Compile Include="Infos\Data\CalculatedFieldInfo.cs" />
+    <Compile Include="Infos\Data\ChildFieldInfo.cs" />
+    <Compile Include="Infos\Data\DatabaseInfo.cs" />
+    <Compile Include="Infos\Data\DatabaseInfoCollection.cs" />
+    <Compile Include="Infos\Data\DateTimeFieldInfo.cs" />
+    <Compile Include="Infos\Data\DecimalFieldInfo.cs" />
+    <Compile Include="Infos\Data\EnumerationFieldInfo.cs" />
+    <Compile Include="Infos\Data\FieldInfo.cs" />
+    <Compile Include="Infos\Data\FieldInfoCollection.cs" />
+    <Compile Include="Infos\Data\IFieldInfo.cs" />
+    <Compile Include="Infos\Data\IntFieldInfo.cs" />
+    <Compile Include="Infos\Data\INumberFieldInfo.cs" />
+    <Compile Include="Infos\Data\MultipleFieldInfo.cs" />
+    <Compile Include="Infos\Data\NumberFieldInfo.cs" />
+    <Compile Include="Infos\Data\ParentFieldInfo.cs" />
+    <Compile Include="Infos\Data\StringFieldInfo.cs" />
+    <Compile Include="Infos\Data\TableInfo.cs" />
+    <Compile Include="Infos\Data\TableInfoCollection.cs" />
+    <Compile Include="Infos\Enumerations\EnumerationsInfo.cs" />
+    <Compile Include="Infos\IInfo.cs" />
+    <Compile Include="Infos\Info.cs" />
+    <Compile Include="Infos\InfoCollection.cs" />
+    <Compile Include="Infos\InfosCollection.cs" />
+    <Compile Include="Infos\Views\CrudCreator.cs" />
+    <Compile Include="Infos\Views\ViewsInfo.cs" />
+    <Compile Include="Molding\CodeWriter.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfApplicationMold.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfDatabaseMold.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfDatabaseMoldCollection.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfDossier.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfFactory.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfFieldMoldCollection.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfMold.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfTableMold.cs" />
+    <Compile Include="Molding\Data\EntityFramework\EfTableMoldCollection.cs" />
+    <Compile Include="Molding\Data\EntityFramework\FieldsMold.cs" />
+    <Compile Include="Molding\Dossier.cs" />
+    <Compile Include="Molding\Enumerations\ApplicationMold.cs" />
+    <Compile Include="Molding\Enumerations\EnumerationDossier.cs" />
+    <Compile Include="Molding\Enumerations\EnumerationFactory.cs" />
+    <Compile Include="Molding\Enumerations\EnumerationMold.cs" />
+    <Compile Include="Molding\Enumerations\EnumerationMoldCollection.cs" />
+    <Compile Include="Molding\Factory.cs" />
+    <Compile Include="Molding\FieldMold.cs" />
+    <Compile Include="Molding\IApplicationMold.cs" />
+    <Compile Include="Molding\IDatabaseMold.cs" />
+    <Compile Include="Molding\IEnumerationMold.cs" />
+    <Compile Include="Molding\IFieldMold.cs" />
+    <Compile Include="Molding\ITableMold.cs" />
+    <Compile Include="Molding\Mold.cs" />
+    <Compile Include="Molding\MoldCollection.cs" />
+    <Compile Include="Molding\Pallet.cs" />
+    <Compile Include="Molding\PalletCollection.cs" />
+    <Compile Include="Molding\Product.cs" />
+    <Compile Include="Molding\ProductCollection.cs" />
+    <Compile Include="Molding\Shipment.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcApplicationMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcControlsMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcDossier.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcFactory.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcFieldMoldCollection.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcPanelMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcPanelMoldCollection.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcViewGroupMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcViewGroupMoldCollection.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcViewMold.cs" />
+    <Compile Include="Molding\Views\Mvc\MvcViewMoldCollection.cs" />
+    <Compile Include="PatternChecks\Data\BoolFieldCheck.cs" />
+    <Compile Include="PatternChecks\Data\DatabaseCheck.cs" />
+    <Compile Include="PatternChecks\Data\DateTimeFieldCheck.cs" />
+    <Compile Include="PatternChecks\Data\DecimalFieldCheck.cs" />
+    <Compile Include="PatternChecks\Data\IntFieldCheck.cs" />
+    <Compile Include="PatternChecks\Data\StringFieldCheck.cs" />
+    <Compile Include="PatternChecks\Data\TableCheck.cs" />
+    <Compile Include="PatternChecks\FieldPatternCheck.cs" />
+    <Compile Include="PatternChecks\PatternCheck.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Definitions\ABacklog.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PatternChecks\Enumeration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

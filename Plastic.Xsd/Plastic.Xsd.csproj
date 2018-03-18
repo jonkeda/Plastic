@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE0B7F7C-8F35-450D-B93C-7ED27457F8D6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Plastic.Xsd</RootNamespace>
+    <AssemblyName>Plastic.Xsd</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Plastic\Definitions\ApplicationDefinition.cs">
+      <Link>Definitions\ApplicationDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\BoolFieldDefinition.cs">
+      <Link>Definitions\Data\BoolFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\CalculatedFieldDefinition.cs">
+      <Link>Definitions\Data\CalculatedFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\ChildFieldDefinition.cs">
+      <Link>Definitions\Data\ChildFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\Crud.cs">
+      <Link>Definitions\Data\Crud.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\CrudExtension.cs">
+      <Link>Definitions\Data\CrudExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\DatabaseDefinition.cs">
+      <Link>Definitions\Data\DatabaseDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\DatabaseDefinitionCollection.cs">
+      <Link>Definitions\Data\DatabaseDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\DateTimeFieldDefinition.cs">
+      <Link>Definitions\Data\DateTimeFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\DateTimeType.cs">
+      <Link>Definitions\Data\DateTimeType.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\DecimalFieldDefinition.cs">
+      <Link>Definitions\Data\DecimalFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\EnumerationFieldDefinition.cs">
+      <Link>Definitions\Data\EnumerationFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\FieldDefinition.cs">
+      <Link>Definitions\Data\FieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\FieldDefinitionCollection.cs">
+      <Link>Definitions\Data\FieldDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\IntFieldDefinition.cs">
+      <Link>Definitions\Data\IntFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\MultipleFieldDefinition.cs">
+      <Link>Definitions\Data\MultipleFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\NumberFieldDefinition.cs">
+      <Link>Definitions\Data\NumberFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\NumberType.cs">
+      <Link>Definitions\Data\NumberType.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\ParentFieldDefinition.cs">
+      <Link>Definitions\Data\ParentFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\StringFieldDefinition.cs">
+      <Link>Definitions\Data\StringFieldDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\TableDefinition.cs">
+      <Link>Definitions\Data\TableDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Data\TableDefinitionCollection.cs">
+      <Link>Definitions\Data\TableDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Definition.cs">
+      <Link>Definitions\Definition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\DefinitionCollection.cs">
+      <Link>Definitions\DefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\AttributeDefinition.cs">
+      <Link>Definitions\Entities\AttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\AttributeDefinitionCollection.cs">
+      <Link>Definitions\Entities\AttributeDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\BoolAttributeDefinition.cs">
+      <Link>Definitions\Entities\BoolAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\CalculatedAttributeDefinition.cs">
+      <Link>Definitions\Entities\CalculatedAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\ChildAttributeDefinition.cs">
+      <Link>Definitions\Entities\ChildAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\DateTimeAttributeDefinition.cs">
+      <Link>Definitions\Entities\DateTimeAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\DecimalAttributeDefinition.cs">
+      <Link>Definitions\Entities\DecimalAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\EntityDefinition.cs">
+      <Link>Definitions\Entities\EntityDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\EntityDefinitionCollection.cs">
+      <Link>Definitions\Entities\EntityDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\EnumerationAttributeDefinition.cs">
+      <Link>Definitions\Entities\EnumerationAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\IntAttributeDefinition.cs">
+      <Link>Definitions\Entities\IntAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\ModelDefinition.cs">
+      <Link>Definitions\Entities\ModelDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\ModelDefinitionCollection.cs">
+      <Link>Definitions\Entities\ModelDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\MultipleAttributeDefinition.cs">
+      <Link>Definitions\Entities\MultipleAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\NumberAttributeDefinition.cs">
+      <Link>Definitions\Entities\NumberAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\ParentAttributeDefinition.cs">
+      <Link>Definitions\Entities\ParentAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Entities\StringAttributeDefinition.cs">
+      <Link>Definitions\Entities\StringAttributeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Enumerations\Enumerations.cs">
+      <Link>Definitions\Enumerations\Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Views\Views.cs">
+      <Link>Definitions\Views\Views.cs</Link>
+    </Compile>
+    <None Include="create.bat" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
