@@ -1,5 +1,5 @@
 ﻿using Plastic.Infos;
-using Plastic.Infos.Enumerations;
+using Plastic.Infos.Services;
 
 namespace Plastic.Molding.Cs.Enumerations
 {

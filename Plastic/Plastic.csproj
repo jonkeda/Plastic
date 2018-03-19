@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Infos\Enumerations\" />
     <Folder Include="PatternChecks\Enumeration\" />
     <Folder Include="Properties\" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using Plastic.Molding.Entities;
 
 namespace Plastic.Molding.TypeScript.Data.Models
 {
-    public class TsmEntityMold : TsmMold<EntityInfo>, IEntityMold
+    public class TsmEntityMold : TsMold<EntityInfo>, IEntityMold
     {
         public static TsmAttributeMoldCollection AttributeMolds { get; } = new TsmAttributeMoldCollection();
 

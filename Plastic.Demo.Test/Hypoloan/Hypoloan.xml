@@ -143,11 +143,53 @@
       <Child Name="responsePredicates" ChildEntity="SsifPredicate"/>
     </Entity>
 
-
   </Model>
 
   <Enumeration Name="SsifTrustIssuerType" >
     <Value Name="EcdsaKoblitzSignature2016"/>
     <Value Name="SSIFEthereumHash2017"/>
   </Enumeration>
+
+  <Service Name="SsifWebSite">
+
+    <Operation Name="ssifRequest" ResponseEntity="boolean">
+      <Entity Name="request" Entity="SsifRequest" />
+    </Operation>
+
+    <Operation Name="ssifCreateSessionId" ResponseEntity="string">
+    </Operation>
+
+    <Operation Name="callbackSession" ResponseEntity="SsifResult">
+      <Entity Name="sessionId" Entity="string" />
+    </Operation>
+
+    <Operation Name="getSessionRequest" ResponseEntity="SsifSessionRequest">
+      <Entity Name="sessionId" Entity="string" />
+    </Operation>
+
+    <Operation Name="postSessionResponse" ResponseEntity="boolean">
+      <Entity Name="response" Entity="SsifSessionResponse" />
+    </Operation>
+
+  </Service>
+
+  <Service Name="SsifApi">
+
+    <Operation Name="createSessionRequestAnonymous" ResponseEntity="SsifSessionRequest">
+      <Entity Name="request" Entity="SsifCreateRequestAnonymous" />
+    </Operation>
+
+    <Operation Name="createSessionRequest" ResponseEntity="SsifSessionRequest">
+      <Entity Name="request" Entity="SsifCreateRequest" />
+    </Operation>
+
+    <Operation Name="verifySession" ResponseEntity="boolean">
+      <Entity Name="request" Entity="SsifSessionRequest" />
+      <Entity Name="response" Entity="SsifSessionResponse" />
+    </Operation>
+
+    <Operation Name="getSsifAttestorInformation" ResponseEntity="SsifAttestorInformation">
+    </Operation>
+  </Service>
+
 </Application>

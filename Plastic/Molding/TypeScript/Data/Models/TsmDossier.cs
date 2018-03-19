@@ -1,6 +1,7 @@
 ﻿using Plastic.Infos;
+using Plastic.Molding.TypeScript.Data.Models;
 
-namespace Plastic.Molding.TypeScript.Data.Models
+namespace Plastic.Molding.TypeScript
 {
     public class TsmDossier : Dossier
     {

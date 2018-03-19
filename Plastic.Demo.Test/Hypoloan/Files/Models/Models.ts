@@ -28,38 +28,38 @@ export class SsifCreateRequest
     get ssifRequest():SsifRequest { return this._ssifRequest; }
     set ssifRequest(value: SsifRequest) { this._ssifRequest = value; }
 
-    private _publicExtendedKey: String = undefined;
-    get publicExtendedKey():String { return this._publicExtendedKey; }
-    set publicExtendedKey(value: String) { this._publicExtendedKey = value; }
+    private _publicExtendedKey: string = undefined;
+    get publicExtendedKey():string { return this._publicExtendedKey; }
+    set publicExtendedKey(value: string) { this._publicExtendedKey = value; }
 }
 
 export class SsifAttest
 {
-    private _iri: String = undefined;
-    get iri():String { return this._iri; }
-    set iri(value: String) { this._iri = value; }
+    private _iri: string = undefined;
+    get iri():string { return this._iri; }
+    set iri(value: string) { this._iri = value; }
 
-    private _value: String = undefined;
-    get value():String { return this._value; }
-    set value(value: String) { this._value = value; }
+    private _value: string = undefined;
+    get value():string { return this._value; }
+    set value(value: string) { this._value = value; }
 }
 
 export class SsifRevoke
 {
-    private _iri: String = undefined;
-    get iri():String { return this._iri; }
-    set iri(value: String) { this._iri = value; }
+    private _iri: string = undefined;
+    get iri():string { return this._iri; }
+    set iri(value: string) { this._iri = value; }
 }
 
 export class SsifVerifyRequest
 {
-    private _iri: String = undefined;
-    get iri():String { return this._iri; }
-    set iri(value: String) { this._iri = value; }
+    private _iri: string = undefined;
+    get iri():string { return this._iri; }
+    set iri(value: string) { this._iri = value; }
 
-    private _value: String = undefined;
-    get value():String { return this._value; }
-    set value(value: String) { this._value = value; }
+    private _value: string = undefined;
+    get value():string { return this._value; }
+    set value(value: string) { this._value = value; }
 
     private _trustedAttestor: SsifTrustedAttestor[] = undefined;
     get trustedAttestor():SsifTrustedAttestor[] { return this._trustedAttestor; }
@@ -72,9 +72,9 @@ export class SsifTrustedAttestor
     get type():enumerations.SsifTrustIssuerType { return this._type; }
     set type(value: enumerations.SsifTrustIssuerType) { this._type = value; }
 
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 }
 
 export class SsifSessionRequest
@@ -97,13 +97,13 @@ export class SsifMeta
 
 export class SsifSpo
 {
-    private _context: String[] = undefined;
-    get context():String[] { return this._context; }
-    set context(value: String[]) { this._context = value; }
+    private _context: string[] = undefined;
+    get context():string[] { return this._context; }
+    set context(value: string[]) { this._context = value; }
 
-    private _type: String = undefined;
-    get type():String { return this._type; }
-    set type(value: String) { this._type = value; }
+    private _type: string = undefined;
+    get type():string { return this._type; }
+    set type(value: string) { this._type = value; }
 
     private _statements: IriKeyValuePairs[] = undefined;
     get statements():IriKeyValuePairs[] { return this._statements; }
@@ -124,20 +124,20 @@ export class SsifAttestationIssuerSpo extends SsifSpo
 
 export class IriKeyValuePairs
 {
-    private _iri: String = undefined;
-    get iri():String { return this._iri; }
-    set iri(value: String) { this._iri = value; }
+    private _iri: string = undefined;
+    get iri():string { return this._iri; }
+    set iri(value: string) { this._iri = value; }
 
-    private _value: String = undefined;
-    get value():String { return this._value; }
-    set value(value: String) { this._value = value; }
+    private _value: string = undefined;
+    get value():string { return this._value; }
+    set value(value: string) { this._value = value; }
 }
 
 export class SsifSessionRequestTemplate
 {
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 
     private _spo: SsifSpo = undefined;
     get spo():SsifSpo { return this._spo; }
@@ -146,9 +146,9 @@ export class SsifSessionRequestTemplate
 
 export class SsifSessionResponse
 {
-    private _sessionId: String = undefined;
-    get sessionId():String { return this._sessionId; }
-    set sessionId(value: String) { this._sessionId = value; }
+    private _sessionId: string = undefined;
+    get sessionId():string { return this._sessionId; }
+    set sessionId(value: string) { this._sessionId = value; }
 
     private _attestations: SsifAttestation[] = undefined;
     get attestations():SsifAttestation[] { return this._attestations; }
@@ -157,9 +157,9 @@ export class SsifSessionResponse
 
 export class SsifAttestation
 {
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 
     private _spo: SsifAttestationSpo = undefined;
     get spo():SsifAttestationSpo { return this._spo; }
@@ -191,13 +191,13 @@ export class SsifResult
 
 export class SsifConfiguration
 {
-    private _blockchain: String = undefined;
-    get blockchain():String { return this._blockchain; }
-    set blockchain(value: String) { this._blockchain = value; }
+    private _blockchain: string = undefined;
+    get blockchain():string { return this._blockchain; }
+    set blockchain(value: string) { this._blockchain = value; }
 
-    private _privateKey: String = undefined;
-    get privateKey():String { return this._privateKey; }
-    set privateKey(value: String) { this._privateKey = value; }
+    private _privateKey: string = undefined;
+    get privateKey():string { return this._privateKey; }
+    set privateKey(value: string) { this._privateKey = value; }
 
     private _categories: SsifCategory[] = undefined;
     get categories():SsifCategory[] { return this._categories; }
@@ -218,25 +218,25 @@ export class SsifConfiguration
 
 export class SsifAttestor
 {
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 
-    private _ethereumAdress: String = undefined;
-    get ethereumAdress():String { return this._ethereumAdress; }
-    set ethereumAdress(value: String) { this._ethereumAdress = value; }
+    private _ethereumAdress: string = undefined;
+    get ethereumAdress():string { return this._ethereumAdress; }
+    set ethereumAdress(value: string) { this._ethereumAdress = value; }
 
-    private _logo: String = undefined;
-    get logo():String { return this._logo; }
-    set logo(value: String) { this._logo = value; }
+    private _logo: string = undefined;
+    get logo():string { return this._logo; }
+    set logo(value: string) { this._logo = value; }
 
-    private _infoUrl: String = undefined;
-    get infoUrl():String { return this._infoUrl; }
-    set infoUrl(value: String) { this._infoUrl = value; }
+    private _infoUrl: string = undefined;
+    get infoUrl():string { return this._infoUrl; }
+    set infoUrl(value: string) { this._infoUrl = value; }
 
-    private _ssifUrl: String = undefined;
-    get ssifUrl():String { return this._ssifUrl; }
-    set ssifUrl(value: String) { this._ssifUrl = value; }
+    private _ssifUrl: string = undefined;
+    get ssifUrl():string { return this._ssifUrl; }
+    set ssifUrl(value: string) { this._ssifUrl = value; }
 
     private _texts: SsifText[] = undefined;
     get texts():SsifText[] { return this._texts; }
@@ -245,43 +245,43 @@ export class SsifAttestor
 
 export class SsifPredicate
 {
-    private _iri: String = undefined;
-    get iri():String { return this._iri; }
-    set iri(value: String) { this._iri = value; }
+    private _iri: string = undefined;
+    get iri():string { return this._iri; }
+    set iri(value: string) { this._iri = value; }
 
-    private _datatype: String = undefined;
-    get datatype():String { return this._datatype; }
-    set datatype(value: String) { this._datatype = value; }
+    private _datatype: string = undefined;
+    get datatype():string { return this._datatype; }
+    set datatype(value: string) { this._datatype = value; }
 
     private _texts: SsifText[] = undefined;
     get texts():SsifText[] { return this._texts; }
     set texts(value: SsifText[]) { this._texts = value; }
 
-    private _categoryName: String = undefined;
-    get categoryName():String { return this._categoryName; }
-    set categoryName(value: String) { this._categoryName = value; }
+    private _categoryName: string = undefined;
+    get categoryName():string { return this._categoryName; }
+    set categoryName(value: string) { this._categoryName = value; }
 
-    private _attestorNames: String[] = undefined;
-    get attestorNames():String[] { return this._attestorNames; }
-    set attestorNames(value: String[]) { this._attestorNames = value; }
+    private _attestorNames: string[] = undefined;
+    get attestorNames():string[] { return this._attestorNames; }
+    set attestorNames(value: string[]) { this._attestorNames = value; }
 }
 
 export class SsifText
 {
-    private _langcode: String = undefined;
-    get langcode():String { return this._langcode; }
-    set langcode(value: String) { this._langcode = value; }
+    private _langcode: string = undefined;
+    get langcode():string { return this._langcode; }
+    set langcode(value: string) { this._langcode = value; }
 
-    private _text: String = undefined;
-    get text():String { return this._text; }
-    set text(value: String) { this._text = value; }
+    private _text: string = undefined;
+    get text():string { return this._text; }
+    set text(value: string) { this._text = value; }
 }
 
 export class SsifCategory
 {
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 
     private _texts: SsifText[] = undefined;
     get texts():SsifText[] { return this._texts; }
@@ -290,25 +290,25 @@ export class SsifCategory
 
 export class SsifAttestorInformation
 {
-    private _name: String = undefined;
-    get name():String { return this._name; }
-    set name(value: String) { this._name = value; }
+    private _name: string = undefined;
+    get name():string { return this._name; }
+    set name(value: string) { this._name = value; }
 
-    private _ethereumAdress: String = undefined;
-    get ethereumAdress():String { return this._ethereumAdress; }
-    set ethereumAdress(value: String) { this._ethereumAdress = value; }
+    private _ethereumAdress: string = undefined;
+    get ethereumAdress():string { return this._ethereumAdress; }
+    set ethereumAdress(value: string) { this._ethereumAdress = value; }
 
-    private _logo: String = undefined;
-    get logo():String { return this._logo; }
-    set logo(value: String) { this._logo = value; }
+    private _logo: string = undefined;
+    get logo():string { return this._logo; }
+    set logo(value: string) { this._logo = value; }
 
-    private _infoUrl: String = undefined;
-    get infoUrl():String { return this._infoUrl; }
-    set infoUrl(value: String) { this._infoUrl = value; }
+    private _infoUrl: string = undefined;
+    get infoUrl():string { return this._infoUrl; }
+    set infoUrl(value: string) { this._infoUrl = value; }
 
-    private _ssifUrl: String = undefined;
-    get ssifUrl():String { return this._ssifUrl; }
-    set ssifUrl(value: String) { this._ssifUrl = value; }
+    private _ssifUrl: string = undefined;
+    get ssifUrl():string { return this._ssifUrl; }
+    set ssifUrl(value: string) { this._ssifUrl = value; }
 
     private _texts: SsifText[] = undefined;
     get texts():SsifText[] { return this._texts; }

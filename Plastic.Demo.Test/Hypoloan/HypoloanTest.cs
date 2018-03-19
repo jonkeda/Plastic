@@ -3,6 +3,7 @@ using Plastic.Definitions;
 using Plastic.Infos;
 using Plastic.Molding;
 using Plastic.Molding.TypeScript.Data.Models;
+using Plastic.Molding.TypeScript.Data.Services;
 
 namespace Plastic.Demo.Test.Hypoloan
 {
@@ -24,6 +25,10 @@ namespace Plastic.Demo.Test.Hypoloan
 
             factory.Manufacture(shipment, applicationInfo);
             
+            TssFactory sfactory = new TssFactory();
+
+            sfactory.Manufacture(shipment, applicationInfo);
+
             shipment.Save(@"C:\Sources\Plastic\Plastic.Demo.Test\Hypoloan\Files");
 
         }

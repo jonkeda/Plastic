@@ -9,18 +9,46 @@ namespace Plastic.Infos
             Name = "string"
         };
 
+        private static readonly EntityInfo BooleanInfo = new EntityInfo
+        {
+            Name = "boolean"
+        };
+
+        public static EntityInfo GetEntityInfo(ApplicationInfo application, string entityName)
+        {
+            foreach (ModelInfo model in application.Models)
+            {
+                EntityInfo entity = model.Entities.GetByName(entityName);
+                if (entity != null)
+                {
+                    return entity;
+                }
+            }
+            return StandardEntityInfo(entityName);
+        }
+
+
         public static EntityInfo GetEntityInfo(EntityInfoCollection entities, string entityName)
         {
             EntityInfo entityInfo = entities.GetByName(entityName);
-            if (entityInfo == null)
+            if (entityInfo != null)
             {
-                if (entityName == "string")
-                {
-                    return StringInfo;
-                }
+                return entityInfo;
             }
+            return StandardEntityInfo(entityName);
+        }
 
-            return entityInfo;
+        private static EntityInfo StandardEntityInfo(string entityName)
+        {
+            if (entityName == "string")
+            {
+                return StringInfo;
+            }
+            if (entityName == "boolean")
+            {
+                return BooleanInfo;
+            }
+            return null;
         }
     }
 }

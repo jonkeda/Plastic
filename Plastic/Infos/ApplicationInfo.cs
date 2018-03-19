@@ -1,7 +1,7 @@
 ﻿using Plastic.Definitions;
 using Plastic.Infos.Data;
 using Plastic.Infos.Entities;
-using Plastic.Infos.Enumerations;
+using Plastic.Infos.Services;
 using Plastic.Infos.Views;
 
 namespace Plastic.Infos
@@ -10,12 +10,14 @@ namespace Plastic.Infos
     {
         public ApplicationInfo()
         {
+            Services = new ServiceInfoCollection(this);
             Models = new ModelInfoCollection(this);
             UserInterfaces = new UserInterfaceInfoCollection(this);
             Enumerations = new EnumerationInfoCollection(this);
             Databases = new DatabaseInfoCollection(this);
         }
 
+        public ServiceInfoCollection Services { get; }
         public ModelInfoCollection Models { get; }
         public DatabaseInfoCollection Databases { get; }
         public EnumerationInfoCollection Enumerations { get; }
@@ -36,6 +38,10 @@ namespace Plastic.Infos
             Databases.Set(definition.Databases);
             Databases.SetRef(this);
             Databases.SetAdd(this);
+
+            Services.Set(definition.Services);
+            Services.SetRef(this);
+            Services.SetAdd(this);
 
             UserInterfaces.Set(definition.UserInterfaces);
         }

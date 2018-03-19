@@ -8,6 +8,7 @@
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Model" type="Model" />
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Database" type="Database" />
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Enumeration" type="Enumeration" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Service" type="Service" />
           <xs:element minOccurs="0" maxOccurs="unbounded" name="UserInterface" type="UserInterfaceDefinition" />
         </xs:sequence>
         <xs:attribute name="Namespace" type="xs:string" />
@@ -77,6 +78,132 @@
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="ViewGroups" type="ViewGroupDefinition" />
         </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfOperationDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfOperationDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberParameterDefinitionOfInt32" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfInt32" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IntParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberParameterDefinitionOfInt32" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnumParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfInt32">
+        <xs:attribute name="EnumerationName" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberParameterDefinitionOfDecimal" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfDecimal" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DecimalParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberParameterDefinitionOfDecimal" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinitionOfDateTime" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateTimeParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfDateTime" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinitionOfString" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StringParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfString" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MultipleParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfString">
+        <xs:attribute name="ChildEntity" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EntityParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfString">
+        <xs:attribute name="Entity" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CalculatedParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfString" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NumberParameterDefinitionOfBoolean" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ParameterDefinitionOfBoolean" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BoolParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NumberParameterDefinitionOfBoolean" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefinitionOfServiceDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Definition" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Operation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfServiceDefinition">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="1" name="Bool" type="BoolParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Calculated" type="CalculatedParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Entity" type="EntityParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="DateTimeParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Decimal" type="DecimalParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Enumeration" type="EnumParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Int" type="IntParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Multiple" type="MultipleParameter" />
+            <xs:element minOccurs="0" maxOccurs="1" name="String" type="StringParameter" />
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="ResponseEntity" type="xs:string" />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -458,6 +585,15 @@
       <xs:extension base="Definition" />
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="Service">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DefinitionOfApplicationDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Operation" type="Operation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="Enumeration">
     <xs:complexContent mixed="false">
       <xs:extension base="DefinitionOfApplicationDefinition">
@@ -606,6 +742,36 @@
       <xs:extension base="Definition" />
     </xs:complexContent>
   </xs:complexType>
+  <xs:element name="BoolParameter" nillable="true" type="BoolParameter" />
+  <xs:element name="CalculatedParameter" nillable="true" type="CalculatedParameter" />
+  <xs:element name="DateTimeParameter" nillable="true" type="DateTimeParameter" />
+  <xs:element name="DecimalParameter" nillable="true" type="DecimalParameter" />
+  <xs:element name="EntityParameter" nillable="true" type="EntityParameter" />
+  <xs:element name="EnumParameter" nillable="true" type="EnumParameter" />
+  <xs:element name="IntParameter" nillable="true" type="IntParameter" />
+  <xs:element name="MultipleParameter" nillable="true" type="MultipleParameter" />
+  <xs:element name="Operation" nillable="true" type="Operation" />
+  <xs:element name="ArrayOfOperation" nillable="true" type="ArrayOfOperation" />
+  <xs:complexType name="ArrayOfOperation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Operation" nillable="true" type="Operation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParameterDefinition" nillable="true" type="ParameterDefinition" />
+  <xs:element name="ArrayOfParameterDefinition" nillable="true" type="ArrayOfParameterDefinition" />
+  <xs:complexType name="ArrayOfParameterDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParameterDefinition" nillable="true" type="ParameterDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Service" nillable="true" type="Service" />
+  <xs:element name="ArrayOfService" nillable="true" type="ArrayOfService" />
+  <xs:complexType name="ArrayOfService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Service" nillable="true" type="Service" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StringParameter" nillable="true" type="StringParameter" />
   <xs:element name="Value" nillable="true" type="Value" />
   <xs:element name="ArrayOfValue" nillable="true" type="ArrayOfValue" />
   <xs:complexType name="ArrayOfValue">

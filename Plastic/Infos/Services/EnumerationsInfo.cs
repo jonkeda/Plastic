@@ -1,6 +1,6 @@
 ﻿using Plastic.Definitions.Enumerations;
 
-namespace Plastic.Infos.Enumerations
+namespace Plastic.Infos.Services
 {
     public class EnumerationInfoCollection : InfoCollection<EnumerationInfo, EnumerationDefinition, ApplicationInfo>
     {

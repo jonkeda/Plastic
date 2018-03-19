@@ -9,7 +9,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
     }
 
-    public abstract class TsmAttributeMold<T> : TsmMold<T>, ITsmAttributeMold
+    public abstract class TsmAttributeMold<T> : TsMold<T>, ITsmAttributeMold
         where T : class, IAttributeInfo
     {
         protected virtual void DoCreateDataclass(T field, CodeWriter cw)
@@ -23,7 +23,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
         protected virtual string GetTypeName(T field)
         {
-            return "";
+            return TsUtility.GetTypeName("", "");
         }
 
         protected virtual void DoWriteAttributes(T field, CodeWriter cw)
@@ -49,7 +49,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
         protected override string GetTypeName(BoolAttributeInfo field)
         {
-            return "Boolean";
+            return "boolean";
         }
 
     }
@@ -78,7 +78,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
         protected override string GetTypeName(MultipleAttributeInfo field)
         {
-            return TsUtility.GetTypeName(field.ParentEntityInfo?.Name);
+            return TsUtility.GetTypeName(field.ParentEntityInfo?.Name, "");
         }
     }
 
@@ -94,7 +94,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
     {
         protected override string GetTypeName(ParentAttributeInfo field)
         {
-            return TsUtility.GetTypeName(field.ParentEntityInfo?.Name);
+            return TsUtility.GetTypeName(field.ParentEntityInfo?.Name, "");
         }
     }
 
@@ -102,7 +102,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
     {
         protected override string GetTypeName(ChildAttributeInfo field)
         {
-            return TsUtility.GetTypeName(field.ChildEntityInfo?.Name) + "[]";
+            return TsUtility.GetTypeName(field.ChildEntityInfo?.Name, "") + "[]";
         }
     }
 
@@ -110,7 +110,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
     {
         protected override string GetTypeName(StringAttributeInfo field)
         {
-            return "String";
+            return "string";
         }
     }
 }

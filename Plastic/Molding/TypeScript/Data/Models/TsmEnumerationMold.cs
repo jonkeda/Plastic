@@ -1,10 +1,10 @@
 ﻿using Plastic.Infos.Entities;
-using Plastic.Infos.Enumerations;
+using Plastic.Infos.Services;
 using Plastic.Molding.Entities;
 
 namespace Plastic.Molding.TypeScript.Data.Models
 {
-    public class TsmEnumerationMold : TsmMold<ModelInfo>, IModelMold
+    public class TsmEnumerationMold : TsMold<ModelInfo>, IModelMold
     {
         public TsmEntityMoldCollection Attributes { get; } = new TsmEntityMoldCollection();
 

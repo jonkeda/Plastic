@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using Plastic.Definitions.Data;
 using Plastic.Definitions.Entities;
 using Plastic.Definitions.Enumerations;
+using Plastic.Definitions.Services;
 using Plastic.Definitions.Views;
 
 namespace Plastic.Definitions
@@ -12,6 +13,8 @@ namespace Plastic.Definitions
     {
         public ApplicationDefinition()
         {
+
+            Services = new ServiceDefinitionCollection(this);
             Enumerations = new EnumerationDefinitionCollection(this);
             Models = new ModelDefinitionCollection(this);
             Databases = new DatabaseDefinitionCollection(this);
@@ -29,7 +32,10 @@ namespace Plastic.Definitions
         [XmlElement("Enumeration")]
         public EnumerationDefinitionCollection Enumerations { get; }
 
-        [XmlElement("UserInterface")]
+        [XmlElement("Service")]
+        public ServiceDefinitionCollection Services { get; }
+
+       [XmlElement("UserInterface")]
         public UserInterfaceDefinitionCollection UserInterfaces { get; } = new UserInterfaceDefinitionCollection();
 
         public static ApplicationDefinition Load(string filename)

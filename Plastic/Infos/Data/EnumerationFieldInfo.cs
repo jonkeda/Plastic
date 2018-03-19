@@ -1,5 +1,5 @@
 ﻿using Plastic.Definitions.Data;
-using Plastic.Infos.Enumerations;
+using Plastic.Infos.Services;
 using Plastic.Infos.Views;
 
 namespace Plastic.Infos.Data

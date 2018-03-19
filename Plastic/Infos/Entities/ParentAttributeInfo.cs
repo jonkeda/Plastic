@@ -7,9 +7,11 @@ namespace Plastic.Infos.Entities
     public class ParentAttributeInfo : AttributeInfo<ParentAttributeDefinition, string>
     {
         public ParentAttributeInfo() : base("int")
-        { }
+        {
+        }
 
         public string ParentEntity { get; set; }
+
         [XmlIgnore]
         public EntityInfo ParentEntityInfo { get; set; }
 

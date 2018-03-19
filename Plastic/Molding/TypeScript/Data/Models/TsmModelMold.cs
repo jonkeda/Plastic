@@ -3,7 +3,7 @@ using Plastic.Molding.Entities;
 
 namespace Plastic.Molding.TypeScript.Data.Models
 {
-    public class TsmModelMold : TsmMold<ModelInfo>, IModelMold
+    public class TsmModelMold : TsMold<ModelInfo>, IModelMold
     {
         public TsmEntityMoldCollection Attributes { get; } = new TsmEntityMoldCollection();
 
@@ -46,7 +46,7 @@ namespace Plastic.Molding.TypeScript.Data.Models
                 tableMold.CreateDataclass(cw, database, table, dossier, pallet);
             }
 
-            pallet.AddProduct("TsmModel", "Models", $@"{database.Name}.ts", cw);
+            pallet.AddProduct("TsmModel", "Models", $@"Models.ts", cw);
         }
     }
 }

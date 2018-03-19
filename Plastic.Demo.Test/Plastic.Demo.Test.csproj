@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="Hypoloan\Files\" />
     <Folder Include="Hypoloan\Files\Models\" />
+    <Folder Include="Hypoloan\Files\Services\" />
   </ItemGroup>
 
 </Project>

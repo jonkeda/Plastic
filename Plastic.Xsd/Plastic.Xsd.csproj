@@ -166,6 +166,54 @@
     <Compile Include="..\Plastic\Definitions\Enumerations\Enumerations.cs">
       <Link>Definitions\Enumerations\Enumerations.cs</Link>
     </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\BoolParameterDefinition.cs">
+      <Link>Definitions\Services\BoolParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\CalculatedParameterDefinition.cs">
+      <Link>Definitions\Services\CalculatedParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\DateTimeParameterDefinition.cs">
+      <Link>Definitions\Services\DateTimeParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\DecimalParameterDefinition.cs">
+      <Link>Definitions\Services\DecimalParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\EntityParameterDefinition.cs">
+      <Link>Definitions\Services\EntityParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\EnumerationParameterDefinition.cs">
+      <Link>Definitions\Services\EnumerationParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\IntParameterDefinition.cs">
+      <Link>Definitions\Services\IntParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\MultipleParameterDefinition.cs">
+      <Link>Definitions\Services\MultipleParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\NumberParameterDefinition.cs">
+      <Link>Definitions\Services\NumberParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\OperationDefinition.cs">
+      <Link>Definitions\Services\OperationDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\OperationDefinitionCollection.cs">
+      <Link>Definitions\Services\OperationDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\ParameterDefinition.cs">
+      <Link>Definitions\Services\ParameterDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\ParameterDefinitionCollection.cs">
+      <Link>Definitions\Services\ParameterDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\ServiceDefinition.cs">
+      <Link>Definitions\Services\ServiceDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\ServiceDefinitionCollection.cs">
+      <Link>Definitions\Services\ServiceDefinitionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Plastic\Definitions\Services\StringParameterDefinition.cs">
+      <Link>Definitions\Services\StringParameterDefinition.cs</Link>
+    </Compile>
     <Compile Include="..\Plastic\Definitions\Views\Views.cs">
       <Link>Definitions\Views\Views.cs</Link>
     </Compile>
