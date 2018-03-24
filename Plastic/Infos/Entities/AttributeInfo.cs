@@ -16,6 +16,8 @@ namespace Plastic.Infos.Entities
         public bool Required { get; set; }
         public string TypeName { get; }
         public string ColumnName { get; set; }
+        public string JsonName { get; set; }
+        public string XmlName { get; set; }
         public Crud Crud { get; set; }
 
         protected override void OnSet(T definition)
@@ -31,6 +33,22 @@ namespace Plastic.Infos.Entities
             else
             {
                 ColumnName = definition.ColumnName;
+            }
+            if (string.IsNullOrEmpty(definition.JsonName))
+            {
+                JsonName = definition.Name;
+            }
+            else
+            {
+                JsonName = definition.JsonName;
+            }
+            if (string.IsNullOrEmpty(definition.XmlName))
+            {
+                XmlName = definition.Name;
+            }
+            else
+            {
+                XmlName = definition.XmlName;
             }
         }
 

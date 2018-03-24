@@ -9,6 +9,8 @@ namespace Plastic.Infos.Entities
         int Key { get; }
         string DisplayName { get; }
         string ColumnName { get; }
+        string JsonName { get; }
+        string XmlName { get; }
         bool Required { get; }
         string TypeName { get; }
         Crud Crud { get; }

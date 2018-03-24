@@ -20,6 +20,8 @@ namespace Plastic.Infos.Entities
         public EntityInfo ParentEntityInfo { get; set; }
         public Crud Crud { get; set; }
 
+        internal int Order { get; set; }
+
         public IAttributeInfo Key
         {
             get
@@ -32,6 +34,7 @@ namespace Plastic.Infos.Entities
                     || string.Equals(i.Name, $"{Name}", StringComparison.InvariantCultureIgnoreCase));
             }
         }
+
 
         protected override void OnSet(EntityDefinition definition)
         {

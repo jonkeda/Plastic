@@ -44,6 +44,8 @@ namespace Plastic.Infos
             Services.SetAdd(this);
 
             UserInterfaces.Set(definition.UserInterfaces);
+
+            Models.OrderEntities();
         }
     }
 }

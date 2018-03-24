@@ -2,12 +2,6 @@
 <Application>
   <Model Name="Models">
 
-    <Entity Name="SsifRequest">
-      <Child Name="attest" ChildEntity="SsifAttest"/>
-      <Child Name="revoke" ChildEntity="SsifRevoke"/>
-      <Child Name="verifyRequest" ChildEntity="SsifVerifyRequest"/>
-    </Entity>
-
     <Entity Name="SsifCreateRequestAnonymous">
       <Parent Name="ssifRequest" ParentEntity="SsifRequest"/>
     </Entity>
@@ -15,6 +9,12 @@
     <Entity Name="SsifCreateRequest">
       <Parent Name="ssifRequest" ParentEntity="SsifRequest"/>
       <String Name="publicExtendedKey"/>
+    </Entity>
+
+    <Entity Name="SsifRequest">
+      <Child Name="attest" ChildEntity="SsifAttest"/>
+      <Child Name="revoke" ChildEntity="SsifRevoke"/>
+      <Child Name="verifyRequest" ChildEntity="SsifVerifyRequest"/>
     </Entity>
 
     <Entity Name="SsifAttest">
@@ -40,31 +40,6 @@
     <Entity Name="SsifSessionRequest">
       <Parent Name="meta" ParentEntity="SsifMeta"/>
       <Parent Name="template" ParentEntity="SsifSessionRequestTemplate"/>
-    </Entity>
-
-    <Entity Name="SsifMeta">
-      <Parent Name="attestationIssuer" ParentEntity="SsifAttestationIssuerSpo"/>
-    </Entity>
-
-    <Entity Name="SsifSpo">
-      <Child Name="context" ChildEntity="string"/>
-      <String Name="type"/>
-      <Child Name="statements" ChildEntity="IriKeyValuePairs"/>
-      <Parent Name="commitment" ParentEntity="SsifCommitment"/>
-    </Entity>
-
-    <Entity Name="SsifCommitment">
-      <!--<Parent Name="commitment" ParentEntity="SsifCommitment"/>
-      <String Name="type"/>-->
-    </Entity>
-
-    <Entity Name="SsifAttestationIssuerSpo" ParentEntity="SsifSpo">
-
-    </Entity>
-
-    <Entity Name="IriKeyValuePairs">
-      <String Name="iri"/>
-      <String Name="value"/>
     </Entity>
 
     <Entity Name="SsifSessionRequestTemplate">
@@ -96,6 +71,14 @@
       <Parent Name="meta" ParentEntity="SsifMeta"/>
     </Entity>
 
+    <Entity Name="SsifMeta">
+      <Parent Name="attestationIssuer" ParentEntity="SsifAttestationIssuerSpo"/>
+    </Entity>
+
+    <Entity Name="SsifAttestationIssuerSpo" ParentEntity="SsifSpo">
+
+    </Entity>
+
     <Entity Name="SsifConfiguration">
       <String Name="blockchain"/>
       <String Name="privateKey"/>
@@ -115,19 +98,6 @@
       <Child Name="texts" ChildEntity="SsifText"/>
     </Entity>
 
-    <Entity Name="SsifPredicate">
-      <String Name="iri"/>
-      <String Name="datatype"/>
-      <Child Name="texts" ChildEntity="SsifText"/>
-      <String Name="categoryName"/>
-      <Child Name="attestorNames" ChildEntity="string"/>
-    </Entity>
-
-    <Entity Name="SsifText">
-      <String Name="langcode"/>
-      <String Name="text"/>
-    </Entity>
-
     <Entity Name="SsifCategory">
       <String Name="name"/>
       <Child Name="texts" ChildEntity="SsifText"/>
@@ -141,6 +111,36 @@
       <String Name="ssifUrl"/>
       <Child Name="texts" ChildEntity="SsifText"/>
       <Child Name="responsePredicates" ChildEntity="SsifPredicate"/>
+    </Entity>
+
+    <Entity Name="SsifSpo">
+      <Child Name="context" ChildEntity="string"/>
+      <String Name="type"/>
+      <Child Name="statements" ChildEntity="IriKeyValuePairs"/>
+      <Parent Name="commitment" ParentEntity="SsifCommitment"/>
+    </Entity>
+
+    <Entity Name="SsifCommitment">
+      <!--<Parent Name="commitment" ParentEntity="SsifCommitment"/>
+      <String Name="type"/>-->
+    </Entity>
+
+    <Entity Name="IriKeyValuePairs">
+      <String Name="iri"/>
+      <String Name="value"/>
+    </Entity>
+
+    <Entity Name="SsifPredicate">
+      <String Name="iri"/>
+      <String Name="datatype"/>
+      <Child Name="texts" ChildEntity="SsifText"/>
+      <String Name="categoryName"/>
+      <Child Name="attestorNames" ChildEntity="string"/>
+    </Entity>
+
+    <Entity Name="SsifText">
+      <String Name="langcode"/>
+      <String Name="text"/>
     </Entity>
 
   </Model>

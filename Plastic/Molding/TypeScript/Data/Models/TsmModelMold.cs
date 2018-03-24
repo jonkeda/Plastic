@@ -1,4 +1,5 @@
-﻿using Plastic.Infos.Entities;
+﻿using System.Linq;
+using Plastic.Infos.Entities;
 using Plastic.Molding.Entities;
 
 namespace Plastic.Molding.TypeScript.Data.Models
@@ -37,11 +38,12 @@ namespace Plastic.Molding.TypeScript.Data.Models
         {
             CodeWriter cw = new CodeWriter();
 
-            cw.WriteLine($@"import * as enumerations from  ""Enumerations""");
+            cw.WriteLine($@"import {{ JsonObject, JsonProperty }} from ""json2typescript"";");
+            cw.WriteLine($@"import * as enumerations from  ""./Enumerations"";");
 
             TsmEntityMold tableMold = new TsmEntityMold();
 
-            foreach (EntityInfo table in database.Entities)
+            foreach (EntityInfo table in database.Entities.OrderByDescending(e => e.Order).ThenBy(e => e.Name))
             {
                 tableMold.CreateDataclass(cw, database, table, dossier, pallet);
             }

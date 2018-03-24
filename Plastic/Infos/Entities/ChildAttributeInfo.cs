@@ -4,7 +4,7 @@ using Plastic.Infos.Views;
 
 namespace Plastic.Infos.Entities
 {
-    public class ChildAttributeInfo : AttributeInfo<ChildAttributeDefinition, string>
+    public class ChildAttributeInfo : AttributeInfo<ChildAttributeDefinition, string>, IEntityContainer
     {
         public ChildAttributeInfo() : base("int")
         {}
@@ -13,6 +13,11 @@ namespace Plastic.Infos.Entities
         [XmlIgnore]
         public EntityInfo ChildEntityInfo { get; set; }
 
+        public EntityInfo GetEntity()
+        {
+            return ChildEntityInfo;
+        }
+        
         protected override void OnSet(ChildAttributeDefinition definition)
         {
             base.OnSet(definition);
@@ -28,5 +33,6 @@ namespace Plastic.Infos.Entities
         {
             return new ChildControlInfo();
         }
+
     }
 }

@@ -47,7 +47,7 @@ namespace Plastic.Molding.TypeScript.Data.Services
 
         protected override string GetTypeName(BoolParameterInfo field)
         {
-            return "boolean";
+            return TsTypes.Boolean;
         }
 
     }
@@ -100,7 +100,7 @@ namespace Plastic.Molding.TypeScript.Data.Services
     {
         protected override string GetTypeName(StringParameterInfo field)
         {
-            return "string";
+            return TsTypes.String;
         }
     }
 }

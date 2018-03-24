@@ -27,6 +27,12 @@ namespace Plastic.Definitions.Entities
         public string ColumnName { get; set; }
 
         [XmlAttribute]
+        public string JsonName { get; set; }
+
+        [XmlAttribute]
+        public string XmlName { get; set; }
+
+        [XmlAttribute]
         public Crud Crud { get; set; } = Crud.All;
 
         [XmlIgnore]

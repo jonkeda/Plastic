@@ -10,17 +10,25 @@ namespace Plastic.Infos.Entities
 
         public void SetRef(ApplicationInfo applicationInfo)
         {
-            foreach (ModelInfo database in this)
+            foreach (ModelInfo model in this)
             {
-                database.SetRef(applicationInfo);
+                model.SetRef(applicationInfo);
             }
         }
 
         public void SetAdd(ApplicationInfo applicationInfo)
         {
-            foreach (ModelInfo database in this)
+            foreach (ModelInfo model in this)
             {
-                database.SetAdd(applicationInfo);
+                model.SetAdd(applicationInfo);
+            }
+        }
+
+        public void OrderEntities()
+        {
+            foreach (ModelInfo model in this)
+            {
+                model.OrderEntities();
             }
         }
     }

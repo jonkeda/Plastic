@@ -28,15 +28,13 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
         protected virtual void DoWriteAttributes(T field, CodeWriter cw)
         {
-            // cw.WriteLine($@"@JsonProperty(""{field.Name}"", {GetTypeName()})");
+            cw.WriteLine($@"@JsonProperty(""{field.JsonName}"", {GetTypeName(field)})");
         }
 
         public void CreateDataclass(IAttributeInfo field, CodeWriter cw)
         {
             DoCreateDataclass(field as T, cw);
         }
-
-
     }
 
     public class TsmCalculatedAttributeMold : TsmAttributeMold<CalculatedAttributeInfo>
@@ -49,19 +47,26 @@ namespace Plastic.Molding.TypeScript.Data.Models
 
         protected override string GetTypeName(BoolAttributeInfo field)
         {
-            return "boolean";
+            return TsTypes.Boolean;
         }
 
     }
 
     public class TsmDateTimTsmieldMold : TsmAttributeMold<DateTimeAttributeInfo>
     {
-
+        protected override string GetTypeName(DateTimeAttributeInfo field)
+        {
+            return TsTypes.Date;
+        }
     }
 
     public class TsmNumberModelAttributeMold<T> : TsmAttributeMold<T>
         where T : class, INumberAttributeInfo
     {
+        protected override string GetTypeName(T field)
+        {
+            return TsTypes.Number;
+        }
     }
 
 
@@ -104,13 +109,18 @@ namespace Plastic.Molding.TypeScript.Data.Models
         {
             return TsUtility.GetTypeName(field.ChildEntityInfo?.Name, "") + "[]";
         }
+
+        protected override void DoWriteAttributes(ChildAttributeInfo field, CodeWriter cw)
+        {
+            cw.WriteLine($@"@JsonProperty(""{field.JsonName}"", [{TsUtility.GetTypeName(field.ChildEntityInfo?.Name, "")}])");
+        }
     }
 
     public class TsmStringAttributeMold : TsmAttributeMold<StringAttributeInfo>
     {
         protected override string GetTypeName(StringAttributeInfo field)
         {
-            return "string";
+            return TsTypes.String;
         }
     }
 }
